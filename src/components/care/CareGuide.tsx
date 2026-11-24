@@ -4,14 +4,19 @@ import type { CareGuideContent } from "@/content/care-guide";
 
 type CareGuideProps = { content: CareGuideContent };
 
+const eyebrowClass = "font-sans text-[10px] font-medium uppercase leading-[1.5] tracking-[0.23em] text-muted-gold";
+
 export function CareGuide({ content }: CareGuideProps) {
   const isKokedama = content.slug === "kokedama";
 
   return (
-    <div className={`care-page care-page--${content.slug}`}>
-      <section className="care-hero" aria-labelledby="hero-title">
+    <div className="w-full bg-black">
+      <section
+        className="relative isolate h-[clamp(590px,78vw,760px)] min-h-[min(760px,calc(100svh-82px))] max-h-[840px] w-full overflow-hidden bg-black max-md:h-[min(690px,calc(100svh-76px))] max-md:min-h-[540px] max-md:max-h-[690px]"
+        aria-labelledby="hero-title"
+      >
         <Image
-          className="care-hero__image"
+          className={`absolute z-[-2] object-cover ${isKokedama ? "object-[center_54%] max-md:!w-[158%] max-md:!right-[-2%] max-md:object-[70%_53%]" : "object-[center_53%] max-md:!w-[150%] max-md:!right-0 max-md:object-[70%_53%]"} max-md:!left-auto max-md:!h-full`}
           src={`/images/${content.slug === "terrariums" ? "terrarium" : "kokedama"}.png`}
           alt={isKokedama ? "A moss-wrapped Kokedama with a fern" : "A planted terrarium within a glass vessel"}
           fill
@@ -19,48 +24,96 @@ export function CareGuide({ content }: CareGuideProps) {
           sizes="100vw"
           quality={88}
         />
-        <div className="care-hero__content">
-          <p className="eyebrow">Care Guide <span aria-hidden="true">/</span> {content.name}</p>
-          <h1 id="hero-title">{content.heroTitle}</h1>
-          <p className="care-hero__description">{content.heroDescription}</p>
+        <div className="absolute left-[clamp(24px,7.2vw,112px)] top-1/2 w-[min(570px,48vw)] -translate-y-[48%] max-md:left-6 max-md:top-[49%] max-md:w-[min(44vw,330px)] max-md:-translate-y-1/2 max-[380px]:left-5">
+          <p className={`${eyebrowClass} mb-6 max-md:mb-[18px] max-md:text-[9px] max-md:tracking-[0.19em]`}>
+            Care Guide <span className="px-2 text-muted-grey" aria-hidden="true">/</span> {content.name}
+          </p>
+          <h1 id="hero-title" className="m-0 max-w-[590px] font-serif text-[clamp(76px,8vw,112px)] font-light leading-[0.98] tracking-[-0.025em] text-ivory max-md:max-w-[360px] max-md:text-[clamp(48px,13vw,68px)] max-[380px]:text-[47px]">
+            {content.heroTitle}
+          </h1>
+          <p className="mb-0 mt-[26px] max-w-[420px] text-base leading-[1.85] text-ivory/85 max-md:mt-[19px] max-md:max-w-[310px] max-md:text-sm max-md:leading-[1.75] max-[380px]:max-w-[275px] max-[380px]:text-[11px]">
+            {content.heroDescription}
+          </p>
         </div>
-        <span className="care-hero__index" aria-hidden="true">01 / 02</span>
+        <span
+          className="pointer-events-none absolute inset-0 z-[-1] bg-[linear-gradient(90deg,rgba(0,0,0,.38),transparent_66%)] max-md:bg-[linear-gradient(90deg,rgba(0,0,0,.56),rgba(0,0,0,.12)_67%,transparent)]"
+          aria-hidden="true"
+        />
       </section>
 
-      <nav className="product-switch" aria-label="Choose a care guide">
-        <span className="product-switch__label">Explore care guides</span>
-        <div className="product-switch__links">
-          <Link href="/terrariums" aria-current={!isKokedama ? "page" : undefined}>Terrariums</Link>
-          <span aria-hidden="true">·</span>
-          <Link href="/kokedama" aria-current={isKokedama ? "page" : undefined}>Kokedama</Link>
+      <nav
+        className="flex min-h-[112px] items-center justify-between gap-6 bg-black px-[calc(clamp(24px,7.2vw,112px)+clamp(8px,2vw,24px))] py-7 max-md:min-h-[100px] max-md:flex-col max-md:items-end max-md:justify-center max-md:gap-[9px] max-md:py-6 max-md:pl-6 max-md:pr-8"
+        aria-label="Choose a care guide"
+      >
+        <span className="font-sans text-sm tracking-[0.14em] text-muted-grey">
+          Explore care guides
+        </span>
+        <div className="flex items-center gap-8 text-[#77766f] max-md:gap-[18px]">
+          <Link
+            className="relative py-3 font-serif text-[clamp(30px,3vw,42px)] font-normal leading-[1.2] text-muted-grey transition-colors duration-300 hover:text-ivory aria-[current=page]:text-ivory focus-visible:outline focus-visible:outline-1 focus-visible:outline-muted-gold focus-visible:outline-offset-[5px] max-md:text-xl"
+            href="/terrariums"
+            aria-current={!isKokedama ? "page" : undefined}
+          >
+            Terrariums
+            {!isKokedama && <span className="absolute bottom-px left-0 h-px w-full bg-muted-gold" aria-hidden="true" />}
+          </Link>
+          <span aria-hidden="true" className="text-sm text-muted-grey">/</span>
+          <Link
+            className="relative py-3 font-serif text-[clamp(30px,3vw,42px)] font-normal leading-[1.2] text-muted-grey transition-colors duration-300 hover:text-ivory aria-[current=page]:text-ivory focus-visible:outline focus-visible:outline-1 focus-visible:outline-muted-gold focus-visible:outline-offset-[5px] max-md:text-xl"
+            href="/kokedama"
+            aria-current={isKokedama ? "page" : undefined}
+          >
+            Kokedama
+            {isKokedama && <span className="absolute bottom-px left-0 h-px w-full bg-muted-gold" aria-hidden="true" />}
+          </Link>
         </div>
       </nav>
 
-      <div className="care-main">
-        <section id="about" className="editorial-section about-section">
-          <div className="section-heading">
-            <p className="eyebrow">The essence</p>
-            <h2>{content.aboutTitle}</h2>
+      <div className="w-full bg-black">
+        <section
+          id="about"
+          className="grid w-full grid-cols-[minmax(240px,.83fr)_minmax(0,1.17fr)] items-start gap-x-[clamp(48px,10vw,150px)] px-[clamp(24px,7.2vw,112px)] py-[clamp(96px,12vw,172px)] scroll-mt-[98px] max-md:grid-cols-1 max-md:gap-y-[34px] max-md:px-6 max-md:py-[88px] max-md:scroll-mt-[92px]"
+        >
+          <div className="max-w-[490px]">
+            <p className={`${eyebrowClass} mb-[23px] max-md:mb-4`}>The essence</p>
+            <h2 className="m-0 font-serif text-[clamp(58px,6.3vw,82px)] font-light leading-[1.02] tracking-[-0.02em] text-ivory max-md:max-w-[500px] max-md:text-[clamp(42px,11vw,60px)]">
+              {content.aboutTitle}
+            </h2>
           </div>
-          <div className="section-copy">
-            {content.about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          <div className="max-w-[700px] pt-1 max-md:pt-0">
+            {content.about.map((paragraph) => (
+              <p className="mb-5 text-base leading-[1.85] text-muted-grey last:mb-0 max-md:text-sm" key={paragraph}>
+                {paragraph}
+              </p>
+            ))}
           </div>
         </section>
 
-        <section id="process" className="editorial-section process-section">
-          <div className="section-heading">
-            <p className="eyebrow">The craft</p>
-            <h2>{content.processTitle}</h2>
+        <section
+          id="process"
+          className="grid w-full grid-cols-[minmax(240px,.83fr)_minmax(0,1.17fr)] items-start gap-x-[clamp(48px,10vw,150px)] px-[clamp(24px,7.2vw,112px)] py-[clamp(96px,12vw,172px)] scroll-mt-[98px] max-md:grid-cols-1 max-md:gap-y-[34px] max-md:px-6 max-md:py-[88px] max-md:scroll-mt-[92px]"
+        >
+          <div className="max-w-[490px]">
+            <p className={`${eyebrowClass} mb-[23px] max-md:mb-4`}>The craft</p>
+            <h2 className="m-0 font-serif text-[clamp(58px,6.3vw,82px)] font-light leading-[1.02] tracking-[-0.02em] text-ivory max-md:max-w-[500px] max-md:text-[clamp(42px,11vw,60px)]">
+              {content.processTitle}
+            </h2>
           </div>
-          <div className="section-copy">
-            <p className="section-intro">{content.processIntro}</p>
-            <ol className={`process-list ${isKokedama ? "process-list--six" : ""}`}>
+          <div className="max-w-[700px] pt-1 max-md:pt-0">
+            <p className="section-intro mb-[38px] text-lg leading-[1.8] text-ivory/85 max-md:mb-7 max-md:text-base">
+              {content.processIntro}
+            </p>
+            <ol className="mt-[45px] list-none p-0 max-md:mt-7">
               {content.process.map((stage) => (
-                <li key={stage.number}>
-                  <span className="process-list__number">{stage.number}</span>
+                <li className="grid grid-cols-[48px_minmax(0,1fr)] gap-4 py-[22px] pb-6 max-md:grid-cols-[34px_minmax(0,1fr)] max-md:gap-3 max-md:py-[19px]" key={stage.number}>
+                  <span className="text-[10px] tracking-[0.12em] text-muted-gold">{stage.number}</span>
                   <div>
-                    <h3>{stage.title}</h3>
-                    <p>{stage.description}</p>
+                    <h3 className="mb-2 mt-[-5px] font-serif text-[30px] font-normal leading-[1.15] text-ivory max-md:text-[26px]">
+                      {stage.title}
+                    </h3>
+                    <p className="mb-0 max-w-[560px] text-base leading-[1.85] text-muted-grey max-md:text-sm">
+                      {stage.description}
+                    </p>
                   </div>
                 </li>
               ))}
@@ -68,52 +121,100 @@ export function CareGuide({ content }: CareGuideProps) {
           </div>
         </section>
 
-        <section id="care" className="editorial-section care-section">
-          <div className="section-heading">
-            <p className="eyebrow">Everyday care</p>
-            <h2>{content.careTitle}</h2>
+        <section
+          id="care"
+          className="grid w-full grid-cols-[minmax(240px,.83fr)_minmax(0,1.17fr)] items-start gap-x-[clamp(48px,10vw,150px)] px-[clamp(24px,7.2vw,112px)] py-[clamp(96px,12vw,172px)] scroll-mt-[98px] max-md:grid-cols-1 max-md:gap-y-[34px] max-md:px-6 max-md:py-[88px] max-md:scroll-mt-[92px]"
+        >
+          <div className="max-w-[490px]">
+            <p className={`${eyebrowClass} mb-[23px] max-md:mb-4`}>Everyday care</p>
+            <h2 className="m-0 font-serif text-[clamp(58px,6.3vw,82px)] font-light leading-[1.02] tracking-[-0.02em] text-ivory max-md:max-w-[500px] max-md:text-[clamp(42px,11vw,60px)]">
+              {content.careTitle}
+            </h2>
           </div>
-          <div className="section-copy">
-            <p className="section-intro">{content.careIntro}</p>
-            <div className="care-topics">
+          <div className="max-w-[700px] pt-1 max-md:pt-0">
+            <p className="section-intro mb-[38px] text-lg leading-[1.8] text-ivory/85 max-md:mb-7 max-md:text-base">
+              {content.careIntro}
+            </p>
+            <div className="mt-[6px]">
               {content.care.map((topic, index) => (
-                <article className="care-topic" key={topic.title}>
-                  <span className="care-topic__index">{String(index + 1).padStart(2, "0")}</span>
+                <article className="grid grid-cols-[48px_minmax(0,1fr)] gap-4 py-[27px] pb-[29px] [&+article]:mt-[17px] max-md:grid-cols-[34px_minmax(0,1fr)] max-md:gap-3" key={topic.title}>
+                  <span className="text-[10px] tracking-[0.12em] text-muted-gold">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <div>
-                    <h3>{topic.title}</h3>
-                    {topic.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                    <h3 className="mb-2 mt-[-5px] font-serif text-[30px] font-normal leading-[1.15] text-ivory max-md:text-[26px]">
+                      {topic.title}
+                    </h3>
+                    {topic.paragraphs?.map((paragraph) => (
+                      <p className="mb-5 max-w-[590px] text-base leading-[1.85] text-muted-grey last:mb-0 max-md:text-sm" key={paragraph}>
+                        {paragraph}
+                      </p>
+                    ))}
                     {topic.points?.map((point) => (
-                      <p className="care-point" key={point.label}><strong>{point.label}</strong>{point.text}</p>
+                      <p className="mb-5 max-w-[590px] text-base leading-[1.85] text-muted-grey last:mb-0 max-md:text-sm" key={point.label}>
+                        <strong className="mr-2 font-medium text-ivory/90">{point.label}</strong>{point.text}
+                      </p>
                     ))}
                   </div>
                 </article>
               ))}
             </div>
-
-            <div className="precautions">
-              <p className="eyebrow">Things to avoid</p>
-              <h3 className="precautions__heading">A few points to keep in mind.</h3>
-              <ul>
-                {content.precautions.map((item) => (
-                  <li key={item.title}><strong>{item.title}</strong><span>{item.text}</span></li>
-                ))}
-              </ul>
-            </div>
           </div>
         </section>
 
-        <section id="faq" className="editorial-section faq-section">
-          <div className="section-heading">
-            <p className="eyebrow">Common questions</p>
-            <h2>Frequently asked questions.</h2>
+        <section className="px-[clamp(24px,7.2vw,112px)] pb-[clamp(96px,12vw,172px)] pt-6 max-md:px-6 max-md:pb-[88px] max-md:pt-1" aria-labelledby="precautions-title">
+          <div className="mx-auto w-full max-w-[1120px] text-center">
+            <p className={`${eyebrowClass} mb-4`}>Things to avoid</p>
+            <h2 id="precautions-title" className="m-0 font-serif text-[clamp(42px,4.8vw,62px)] font-light leading-[1.02] text-ivory">
+              Things to avoid.
+            </h2>
+            <p className="mx-auto mb-11 mt-5 max-w-[590px] text-base leading-[1.85] text-muted-grey max-md:mb-[34px] max-md:text-[15px]">
+              A few simple precautions will help keep your {isKokedama ? "Kokedama" : "terrarium"} healthy over time.
+            </p>
+            <ul className="m-0 grid list-none grid-cols-3 gap-x-8 gap-y-10 p-0 text-left max-md:grid-cols-2 max-md:gap-x-6 max-md:gap-y-[34px] max-[480px]:grid-cols-1 max-[480px]:gap-y-[27px]">
+              {content.precautions.map((item, index) => (
+                <li className="grid grid-cols-[28px_minmax(0,1fr)] gap-[14px] max-md:grid-cols-[24px_minmax(0,1fr)] max-md:gap-[10px]" key={item.title}>
+                  <span className="pt-[3px] text-[10px] tracking-[0.12em] text-muted-gold">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="mb-[9px] mt-0 font-serif text-[27px] font-normal leading-[1.15] text-ivory/90 max-md:text-2xl">
+                      {item.title}
+                    </h3>
+                    <p className="m-0 text-[15px] leading-[1.8] text-muted-grey max-md:text-sm">
+                      {item.text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="section-copy">
-            <p className="section-intro">Answers to common questions about caring for your Sylva Auris {isKokedama ? "Kokedama" : "terrarium"}.</p>
-            <div className="faq-list">
+        </section>
+
+        <section
+          id="faq"
+          className="grid w-full grid-cols-[minmax(240px,.83fr)_minmax(0,1.17fr)] items-start gap-x-[clamp(48px,10vw,150px)] px-[clamp(24px,7.2vw,112px)] py-[clamp(96px,12vw,172px)] scroll-mt-[98px] max-md:grid-cols-1 max-md:gap-y-[34px] max-md:px-6 max-md:py-[88px] max-md:scroll-mt-[92px]"
+        >
+          <div className="max-w-[490px]">
+            <p className={`${eyebrowClass} mb-[23px] max-md:mb-4`}>Common questions</p>
+            <h2 className="m-0 font-serif text-[clamp(58px,6.3vw,82px)] font-light leading-[1.02] tracking-[-0.02em] text-ivory max-md:max-w-[500px] max-md:text-[clamp(42px,11vw,60px)]">
+              Frequently asked questions.
+            </h2>
+          </div>
+          <div className="max-w-[700px] pt-1 max-md:pt-0">
+            <p className="mb-[38px] text-lg leading-[1.8] text-ivory/85 max-md:mb-7 max-md:text-base">
+              Answers to common questions about caring for your Sylva Auris {isKokedama ? "Kokedama" : "terrarium"}.
+            </p>
+            <div className="mt-1">
               {content.faqs.map((faq, index) => (
-                <details key={faq.question} open={index === 0}>
-                  <summary><span>{faq.question}</span><span className="faq-list__icon" aria-hidden="true" /></summary>
-                  <p>{faq.answer}</p>
+                <details className="group pb-[22px] [&+details]:pt-[22px]" key={faq.question} open={index === 0}>
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-[22px] font-serif text-[29px] font-normal leading-[1.2] text-ivory focus-visible:outline focus-visible:outline-1 focus-visible:outline-muted-gold focus-visible:outline-offset-[5px] [&::-webkit-details-marker]:hidden max-md:text-[25px]">
+                    <span>{faq.question}</span>
+                    <span className="relative h-[14px] w-[14px] shrink-0 before:absolute before:left-px before:top-[6px] before:h-px before:w-3 before:bg-muted-gold after:absolute after:left-px after:top-[6px] after:h-px after:w-3 after:rotate-90 after:bg-muted-gold after:transition-transform group-open:after:rotate-0" aria-hidden="true" />
+                  </summary>
+                  <p className="mb-0 mr-[34px] mt-[17px] max-w-[620px] text-base leading-[1.85] text-muted-grey max-md:text-sm">
+                    {faq.answer}
+                  </p>
                 </details>
               ))}
             </div>

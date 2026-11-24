@@ -117,7 +117,7 @@ export const careGuides: Record<CareGuideContent["slug"], CareGuideContent> = {
       { title: "Letting the moss dry out completely", text: "Check the moss ball regularly. Water it when it feels noticeably lighter or the moss begins to look dry." },
     ],
     faqs: [
-      { question: "How often should I water my Kokedama?", answer: "There is no fixed schedule. Soak the moss ball when it feels noticeably lighter or begins to dry. Depending on indoor conditions, this may be roughly every 1–2 weeks, but always check the moss ball rather than relying on the calendar." },
+      { question: "How often should I water my Kokedama?", answer: "There is no fixed schedule. Soak the moss ball when it feels noticeably lighter or begins to dry. Depending on indoor conditions, this may be roughly every 4–5 days, but always check the moss ball rather than relying on the calendar." },
       { question: "Can Kokedama live indoors?", answer: "Yes. A Kokedama can be displayed indoors when the plant receives bright, indirect light and the moss ball is kept suitably moist. Choose a position away from harsh direct sunlight, heaters and air-conditioner vents." },
       { question: "Does the moss need special care?", answer: "The moss should not be allowed to dry out completely. Check it regularly, and soak the Kokedama when the ball feels noticeably lighter or the moss begins to dry. Light misting can help in dry indoor conditions." },
       { question: "Can I hang my Kokedama?", answer: "Yes, if it has been prepared with a secure hanging method. If yours is designed for a shelf or tabletop, keep it on a stable surface rather than adding an improvised support." },

@@ -70,12 +70,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${dmSans.variable} scroll-smooth`}
+      className={`${cormorant.variable} ${dmSans.variable} scroll-smooth [scroll-padding-top:98px] max-md:[scroll-padding-top:92px]`}
     >
-      <body className="min-h-screen flex flex-col">
+      <body className="flex min-h-screen flex-col overflow-x-clip bg-black font-sans text-ivory antialiased selection:bg-muted-gold selection:text-black">
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="min-h-screen flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

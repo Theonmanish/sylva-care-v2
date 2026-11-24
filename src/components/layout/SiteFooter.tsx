@@ -3,24 +3,44 @@ import { siteConfig } from "@/content/site";
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer">
-      <div className="site-footer__inner">
-        <div>
-          <Link href="/terrariums" className="site-wordmark">Sylva Auris</Link>
-          <p className="site-footer__tagline">Forest. Reimagined.</p>
+    <footer className="bg-black px-[clamp(24px,7.2vw,112px)] pb-6 pt-[70px] max-md:px-6 max-md:pb-[22px] max-md:pt-[58px]">
+      <div className="grid grid-cols-[1.2fr_.7fr_1fr] gap-10 pb-[60px] max-md:grid-cols-2 max-md:gap-x-5 max-md:gap-y-9 max-md:pb-11">
+        <div className="max-md:col-span-2">
+          <Link
+            href="/terrariums"
+            className="whitespace-nowrap font-serif text-2xl font-normal tracking-[0.17em] text-ivory transition-colors duration-200 hover:text-muted-gold"
+          >
+            Sylva Auris
+          </Link>
+          <p className="mt-3 font-serif text-lg italic leading-[1.3] text-muted-gold">
+            Forest. Reimagined.
+          </p>
         </div>
-        <nav className="site-footer__guides" aria-label="Care guides">
-          <span className="eyebrow">Care guides</span>
-          <Link href="/terrariums">Terrariums</Link>
-          <Link href="/kokedama">Kokedama</Link>
+
+        <nav className="flex flex-col items-start gap-[13px] max-md:gap-3" aria-label="Care guides">
+          <span className="mb-1 font-sans text-[10px] font-medium uppercase leading-[1.5] tracking-[0.23em] text-muted-gold">
+            Care guides
+          </span>
+          <Link className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href="/terrariums">Terrariums</Link>
+          <Link className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href="/kokedama">Kokedama</Link>
         </nav>
-        <div className="site-footer__contact">
-          <span className="eyebrow">Contact</span>
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-          <a href={siteConfig.instagram.url} target="_blank" rel="noopener noreferrer">Instagram {siteConfig.instagram.handle}</a>
+
+        <div className="flex flex-col items-start gap-[13px] max-md:gap-3">
+          <span className="mb-1 font-sans text-[10px] font-medium uppercase leading-[1.5] tracking-[0.23em] text-muted-gold">
+            Contact
+          </span>
+          <a className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href={`mailto:${siteConfig.email}`}>
+            {siteConfig.email}
+          </a>
+          <a className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href={siteConfig.instagram.url} target="_blank" rel="noopener noreferrer">
+            Instagram {siteConfig.instagram.handle}
+          </a>
         </div>
       </div>
-      <div className="site-footer__bottom">© 2026 {siteConfig.name}</div>
+
+      <div className="border-t border-white/5 pt-5 text-[10px] tracking-[0.07em] text-[#77766f]">
+        © 2026 {siteConfig.name}
+      </div>
     </footer>
   );
 }

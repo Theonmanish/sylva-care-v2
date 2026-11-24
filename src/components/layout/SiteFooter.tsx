@@ -18,27 +18,27 @@ export function SiteFooter() {
         </div>
 
         <nav className="flex flex-col items-start gap-[13px] max-md:gap-3" aria-label="Care guides">
-          <span className="mb-1 font-sans text-[10px] font-medium uppercase leading-[1.5] tracking-[0.23em] text-muted-gold">
+          <span className="mb-1 font-sans text-xs font-semibold uppercase leading-none tracking-[0.18em] text-muted-gold">
             Care guides
           </span>
-          <Link className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href="/terrariums">Terrariums</Link>
-          <Link className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href="/kokedama">Kokedama</Link>
+          <Link className="font-sans text-xs leading-[1.4] tracking-[0.02em] text-muted-grey transition-colors hover:text-muted-gold" href="/terrariums">Terrariums</Link>
+          <Link className="font-sans text-xs leading-[1.4] tracking-[0.02em] text-muted-grey transition-colors hover:text-muted-gold" href="/kokedama">Kokedama</Link>
         </nav>
 
         <div className="flex flex-col items-start gap-[13px] max-md:gap-3">
-          <span className="mb-1 font-sans text-[10px] font-medium uppercase leading-[1.5] tracking-[0.23em] text-muted-gold">
+          <span className="mb-1 font-sans text-xs font-semibold uppercase leading-none tracking-[0.18em] text-muted-gold">
             Contact
           </span>
-          <a className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href={`mailto:${siteConfig.email}`}>
+          <a className="font-sans text-xs leading-[1.4] tracking-[0.02em] text-muted-grey transition-colors hover:text-muted-gold" href={`mailto:${siteConfig.email}`}>
             {siteConfig.email}
           </a>
-          <a className="text-xs text-muted-grey transition-colors hover:text-muted-gold" href={siteConfig.instagram.url} target="_blank" rel="noopener noreferrer">
+          <a className="font-sans text-xs leading-[1.4] tracking-[0.02em] text-muted-grey transition-colors hover:text-muted-gold" href={siteConfig.instagram.url} target="_blank" rel="noopener noreferrer">
             Instagram {siteConfig.instagram.handle}
           </a>
         </div>
       </div>
 
-      <div className="border-t border-white/5 pt-5 text-[10px] tracking-[0.07em] text-[#77766f]">
+      <div className="border-t border-white/5 pt-5 font-sans text-xs leading-[1.4] tracking-[0.02em] text-[#77766f]">
         © 2026 {siteConfig.name}
       </div>
     </footer>

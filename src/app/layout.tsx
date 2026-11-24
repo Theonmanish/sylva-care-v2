@@ -5,9 +5,9 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { siteConfig } from "@/content/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  variable: "--font-cormorant-garamond",
   display: "swap",
   weight: ["300", "400", "500", "600"],
 });
@@ -70,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} scroll-smooth [scroll-padding-top:98px] max-md:[scroll-padding-top:92px]`}
+      className={`${cormorantGaramond.variable} ${dmSans.variable} scroll-smooth [scroll-padding-top:98px] max-md:[scroll-padding-top:92px]`}
     >
       <body className="flex min-h-screen flex-col overflow-x-clip bg-black font-sans text-ivory antialiased selection:bg-muted-gold selection:text-black">
         <SiteHeader />

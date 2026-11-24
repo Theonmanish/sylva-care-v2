@@ -53,7 +53,7 @@ export function SiteHeader() {
               href={`#${item.id}`}
               aria-current={activeSection === item.id ? "location" : undefined}
               onClick={() => handleNavigate(item.id)}
-              className="font-sans text-sm leading-[1.5] tracking-[0.12em] text-[rgba(234,228,216,0.9)] transition-colors duration-200 hover:text-muted-gold aria-[current=location]:text-muted-gold"
+              className="font-sans text-[0.8125rem] font-medium leading-[1.2] tracking-[0.12em] text-[rgba(234,228,216,0.9)] transition-colors duration-200 hover:text-muted-gold aria-[current=location]:text-muted-gold"
             >
               {item.label(product)}
             </a>
@@ -86,7 +86,7 @@ export function SiteHeader() {
             aria-current={activeSection === item.id ? "location" : undefined}
             tabIndex={isOpen ? 0 : -1}
             onClick={() => handleNavigate(item.id)}
-            className="py-4 font-serif text-[25px] font-normal leading-[1.2] tracking-[0.04em] text-[rgba(234,228,216,0.9)] transition-colors duration-200 hover:text-muted-gold aria-[current=location]:text-muted-gold"
+            className="py-4 font-sans text-[0.8125rem] font-medium leading-[1.2] tracking-[0.12em] text-[rgba(234,228,216,0.9)] transition-colors duration-200 hover:text-muted-gold aria-[current=location]:text-muted-gold"
           >
             {item.label(product)}
           </a>
